@@ -42,7 +42,7 @@ const ContactForm = ({ showToast }) => {
           <CheckCircle className="w-12 h-12 text-[#1E3F20] mx-auto" />
           <h4 className="text-lg font-bold text-[#1E3F20] font-heading">Thank You!</h4>
           <p className="text-sm text-gray-600">
-            Your message has been delivered to the Gauseva Matr Seva team.
+            Your message has been delivered to the Gouseva Maatra Seva team.
           </p>
         </div>
       ) : (

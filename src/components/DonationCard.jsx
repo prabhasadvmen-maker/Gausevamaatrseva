@@ -210,7 +210,7 @@ const DonationCard = ({ showToast }) => {
               <rect x="65" y="65" width="25" height="25" fill="#1E3F20" />
               <rect x="70" y="70" width="15" height="15" fill="#FFFFFF" />
             </svg>
-            <div className="mt-2 text-[10px] sm:text-[11px] font-bold text-[#E06D27]">Gauseva Matr Seva QR</div>
+            <div className="mt-2 text-[10px] sm:text-[11px] font-bold text-[#E06D27]">Gouseva Maatra Seva QR</div>
           </div>
           <p className="text-[11px] sm:text-xs text-gray-600 mt-3 max-w-sm">
             {BANK_DETAILS.qrPlaceholderNote}

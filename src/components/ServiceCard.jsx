@@ -50,7 +50,7 @@ const ServiceCard = ({ service, onSelect, showImage = true }) => {
           </button>
 
           <span className="text-[11px] text-gray-400 font-medium">
-            Gauseva Matr Seva
+            Gouseva Maatra Seva
           </span>
         </div>
       </div>

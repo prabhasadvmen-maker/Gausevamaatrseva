@@ -20,7 +20,7 @@ const Home = ({ setActivePage, onOpenLightbox }) => {
         <div className="absolute inset-0 z-0">
           <img
             src={SITE_INFO.heroImage}
-            alt="Gauseva Matr Seva Gaushala Hero"
+            alt="Gouseva Maatra Seva Gaushala Hero"
             className="w-full h-full object-cover object-center filter-none"
           />
         </div>
@@ -90,7 +90,7 @@ const Home = ({ setActivePage, onOpenLightbox }) => {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               <img
                 src="/images/gau_aahar_feeding.png"
-                alt="Gauseva Matr Seva Gaushala Care"
+                alt="Gouseva Maatra Seva Gaushala Care"
                 className="w-full h-[380px] sm:h-[450px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
@@ -122,7 +122,7 @@ const Home = ({ setActivePage, onOpenLightbox }) => {
             </h2>
 
             <p className="text-base text-gray-600 font-sans leading-relaxed">
-              <strong>Gauseva Matr Seva</strong> is a non-profit welfare trust committed to providing shelter, nutrition, and free veterinary medical care to stray, sick, elderly, and accident-injured cows.
+              <strong>Gouseva Maatra Seva</strong> is a non-profit welfare trust committed to providing shelter, nutrition, and free veterinary medical care to stray, sick, elderly, and accident-injured cows.
             </p>
 
             <ul className="space-y-3 text-sm text-[#1C1917]">

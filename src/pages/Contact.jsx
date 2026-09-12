@@ -14,7 +14,7 @@ const Contact = ({ showToast }) => {
             Contact & Location • Reach Us
           </span>
           <h1 className="text-3xl sm:text-5xl font-bold font-heading text-white tracking-tight">
-            Contact Gauseva Matr Seva
+            Contact Gouseva Maatra Seva
           </h1>
           <p className="text-base sm:text-lg text-gray-200 max-w-2xl mx-auto font-sans">
             Reach out for sanctuary visits, feeding sponsorship, emergency cow rescue, or general inquiries.

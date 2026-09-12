@@ -49,7 +49,7 @@ const About = ({ setActivePage, onDonateClick }) => {
             About Our Sanctuary • About Us
           </span>
           <h1 className="text-3xl sm:text-5xl font-bold font-heading text-white tracking-tight">
-            Gauseva Matr Seva Trust
+            Gouseva Maatra Seva Trust
           </h1>
           <p className="text-base sm:text-xl text-gray-200 max-w-2xl mx-auto font-sans">
             A non-profit organization dedicated to the care, rehabilitation, and protection of cows.
@@ -67,7 +67,7 @@ const About = ({ setActivePage, onDonateClick }) => {
               centered={false}
             />
             <p className="text-base text-gray-700 leading-relaxed font-sans">
-              <strong>Gauseva Matr Seva</strong> was established with a singular noble goal: ensuring that no cow suffers from hunger, disease, abandonment, or traffic accidents. Over 500 sheltered cows reside safely in our sanctuary.
+              <strong>Gouseva Maatra Seva</strong> was established with a singular noble goal: ensuring that no cow suffers from hunger, disease, abandonment, or traffic accidents. Over 500 sheltered cows reside safely in our sanctuary.
             </p>
             <p className="text-sm text-gray-600 leading-relaxed font-sans">
               We believe that serving animals is a fundamental human duty. Within our grounds, we maintain high standards of cleanliness, medical care, and affectionate daily routine.

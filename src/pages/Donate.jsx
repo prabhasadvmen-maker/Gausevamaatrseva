@@ -33,7 +33,7 @@ const Donate = ({ showToast }) => {
         <SectionTitle
           tag="Donation Integrity"
           title="100% Transparency & Direct Impact"
-          subtitle="Gauseva Matr Seva upholds complete transparency and accountability for all contributions."
+          subtitle="Gouseva Maatra Seva upholds complete transparency and accountability for all contributions."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

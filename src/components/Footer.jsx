@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone, Mail, MapPin, Heart, ChevronRight, MessageSquare } from 'lucide-react';
 import { SITE_INFO } from '../data/content';
 
-const Footer = ({ setActivePage }) => {
+const Footer = ({ setActivePage, onAdminClick }) => {
   const handleNavClick = (pageId) => {
     setActivePage(pageId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -18,7 +18,7 @@ const Footer = ({ setActivePage }) => {
             <div className="flex items-center space-x-3 bg-white/5 p-3 rounded-xl border border-white/10 w-fit">
               <img
                 src={SITE_INFO.logoUrl}
-                alt="Gauseva Matr Seva Logo"
+                alt="Gouseva Maatra Seva Logo"
                 className="h-12 w-auto bg-white p-1 rounded object-contain"
               />
               <div>
@@ -189,6 +189,7 @@ const Footer = ({ setActivePage }) => {
             <button onClick={() => handleNavClick('about')} className="hover:text-gray-200">About Us</button>
             <button onClick={() => handleNavClick('seva')} className="hover:text-gray-200">Our Services</button>
             <button onClick={() => handleNavClick('contact')} className="hover:text-gray-200">Contact Us</button>
+            <button onClick={onAdminClick} className="text-[#D4AF37] font-bold hover:text-white">🔑 Admin Login</button>
           </div>
         </div>
       </div>

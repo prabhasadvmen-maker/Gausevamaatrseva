@@ -40,7 +40,7 @@ const ContactDonate = ({ showToast }) => {
                   संपर्क सूत्र • Contact Details
                 </span>
                 <h3 className="text-2xl font-bold text-[#1E3F20] font-heading mt-1">
-                  Gauseva Matr Seva Dham
+                  Gouseva Maatra Seva Dham
                 </h3>
               </div>
 
@@ -119,7 +119,7 @@ const ContactDonate = ({ showToast }) => {
                 <div className="absolute inset-0 bg-black/40"></div>
                 <div className="relative z-10 text-white space-y-2">
                   <MapPin className="w-8 h-8 text-[#E06D27] mx-auto animate-bounce" />
-                  <div className="text-xs font-bold font-heading">Gauseva Matr Seva Dham Location</div>
+                  <div className="text-xs font-bold font-heading">Gouseva Maatra Seva Dham Location</div>
                   <a
                     href="https://maps.google.com"
                     target="_blank"

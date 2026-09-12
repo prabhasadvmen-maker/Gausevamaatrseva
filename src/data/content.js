@@ -1,16 +1,16 @@
-// Content Data for Gauseva Matr Seva (GausevaMatrSeva.com)
+// Content Data for Gouseva Maatra Seva (GousevaMaatraSeva.com)
 
 export const SITE_INFO = {
-  name: "Gauseva Matr Seva",
-  domain: "GausevaMatrSeva.com",
+  name: "Gouseva Maatra Seva",
+  domain: "GousevaMaatraSeva.com",
   subTitle: "Cow Welfare & Protection Trust",
   slogan: "Cow Protection • Compassion • Sanctuary",
-  heroHeading: "Gauseva — An Initiative of Compassion, Service and Values",
+  heroHeading: "Gouseva — An Initiative of Compassion, Service and Values",
   heroSubtitle: "Your support in the noble cause of serving, protecting, and honoring cows makes a profound difference.",
   logoUrl: "/logo.png",
   phone: "+91 98765 43210",
   whatsapp: "+919876543210",
-  email: "info@gausevamatrseva.com",
+  email: "info@gousevamaatraseva.com",
   address: "Orchid Center, 3rd Floor, Golf Course Road, SEC-53, Gurugram, HR - 122002, IND",
   heroImage: "/hero_section_image.png",
 };
@@ -154,7 +154,7 @@ export const GALLERY_ITEMS = [
 
 export const TESTIMONIALS = [
   {
-    quote: "The transparency and dedication of Gauseva Matr Seva is truly inspiring. Every cow is treated with immense love and family-like care.",
+    quote: "The transparency and dedication of Gouseva Maatra Seva is truly inspiring. Every cow is treated with immense love and family-like care.",
     name: "Rameshwar Sharma",
     role: "Senior Donor, New Delhi",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
@@ -174,9 +174,9 @@ export const TESTIMONIALS = [
 ];
 
 export const BANK_DETAILS = {
-  upiId: "gausevamatrseva@upi",
+  upiId: "gousevamaatraseva@upi",
   bankName: "State Bank of India (SBI)",
-  accountName: "Gauseva Matr Seva Trust",
+  accountName: "Gouseva Maatra Seva Trust",
   accountNumber: "38920100984712",
   ifsc: "SBIN0004521",
   branch: "Gurugram SEC-53 Branch, HR",

@@ -121,7 +121,7 @@ const Gallery = ({ onOpenLightbox }) => {
                 <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-1" />
               </div>
               <h4 className="text-base sm:text-xl font-bold font-heading text-white">Daily Fodder Distribution & Morning Routine</h4>
-              <span className="text-xs text-[#D4AF37] font-semibold">Gauseva Matr Seva Official Film</span>
+              <span className="text-xs text-[#D4AF37] font-semibold">Gouseva Maatra Seva Official Film</span>
             </div>
           </div>
 

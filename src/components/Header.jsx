@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Heart, Phone, ChevronRight } from 'lucide-react';
+import { Menu, X, Heart, Phone, ChevronRight, User, ShieldCheck } from 'lucide-react';
 import { SITE_INFO } from '../data/content';
 
-const Header = ({ activePage, setActivePage }) => {
+const Header = ({ 
+  activePage, 
+  setActivePage, 
+  onAdminClick, 
+  donorUser, 
+  onDonorLoginClick, 
+  onDonorDashboardClick 
+}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -46,37 +53,66 @@ const Header = ({ activePage, setActivePage }) => {
             <span className="text-[#D4AF37] hidden md:inline">|</span>
             <span className="text-[#FAF6F0]/80 hidden md:inline">Serving Cows is a Supreme Virtue</span>
           </div>
-          <div className="flex items-center space-x-4">
+
+          <div className="flex items-center space-x-3">
             <a href={`tel:${SITE_INFO.phone}`} className="flex items-center text-[#FAF6F0]/90 hover:text-[#D4AF37] transition-colors">
               <Phone className="w-3.5 h-3.5 mr-1.5 text-[#D4AF37]" />
               <span>{SITE_INFO.phone}</span>
             </a>
+
             <span className="text-[#D4AF37]/50">•</span>
-            <span className="text-[#FAF6F0]/90 font-medium">{SITE_INFO.domain}</span>
+
+            {/* Donor Portal Button */}
+            {donorUser ? (
+              <button 
+                onClick={onDonorDashboardClick}
+                className="text-white hover:text-[#D4AF37] font-bold transition-colors cursor-pointer text-xs flex items-center gap-1 bg-[#E06D27] px-2.5 py-0.5 rounded shadow-xs"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>My Donor Dashboard</span>
+              </button>
+            ) : (
+              <button 
+                onClick={onDonorLoginClick}
+                className="text-[#FAF6F0] hover:text-[#D4AF37] font-bold transition-colors cursor-pointer text-xs flex items-center gap-1 bg-white/10 hover:bg-white/20 px-2.5 py-0.5 rounded border border-white/20"
+              >
+                <User className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <span>Donor Login</span>
+              </button>
+            )}
+
+            <span className="text-[#D4AF37]/50">•</span>
+
+            {/* Admin Portal Button */}
+            <button 
+              onClick={onAdminClick}
+              className="text-[#D4AF37] hover:text-white font-bold transition-colors cursor-pointer text-xs flex items-center gap-1 bg-[#D4AF37]/10 px-2.5 py-0.5 rounded border border-[#D4AF37]/30"
+            >
+              <span>🔑 Admin Portal</span>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Main Sticky Header */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
-          isScrolled
+        className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled
             ? 'glass-header py-2 sm:py-2.5 shadow-md border-b border-[#E06D27]/10'
             : 'bg-[#FDFBF7]/95 py-3 sm:py-3.5 border-b border-[#1E3F20]/5'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          
+
           {/* Left: Official Logo & Brand Name */}
           <button
             onClick={() => handleNavClick('home')}
             className="flex items-center space-x-2.5 sm:space-x-3 group text-left cursor-pointer focus:outline-none"
-            aria-label="Gauseva Matr Seva Home"
+            aria-label="Gouseva Maatra Seva Home"
           >
             <div className="relative overflow-hidden rounded-lg bg-white p-1 shadow-xs border border-[#D4AF37]/20 group-hover:border-[#E06D27]/40 transition-colors shrink-0">
               <img
                 src={SITE_INFO.logoUrl}
-                alt="Gauseva Matr Seva Logo"
+                alt="Gouseva Maatra Seva Logo"
                 className="h-9 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
@@ -98,20 +134,44 @@ const Header = ({ activePage, setActivePage }) => {
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`px-3.5 xl:px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                    isActive
+                  className={`px-3.5 xl:px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${isActive
                       ? 'bg-[#1E3F20] text-white shadow-sm'
                       : 'text-[#1C1917]/85 hover:text-[#1E3F20] hover:bg-[#1E3F20]/5'
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </button>
               );
             })}
+
+            {/* Donor Dashboard Navigation Item */}
+            {donorUser && (
+              <button
+                onClick={onDonorDashboardClick}
+                className={`px-3.5 xl:px-4 py-2 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer flex items-center space-x-1.5 ${
+                  activePage === 'user-dashboard'
+                    ? 'bg-[#E06D27] text-white shadow-sm'
+                    : 'text-[#E06D27] bg-orange-50 hover:bg-orange-100 border border-orange-200'
+                }`}
+              >
+                <User className="w-4 h-4" />
+                <span>My Dashboard</span>
+              </button>
+            )}
           </nav>
 
-          {/* Right Action: Donate CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
+          {/* Right Action: Donate CTA & Donor Login */}
+          <div className="hidden lg:flex items-center space-x-3">
+            {!donorUser && (
+              <button
+                onClick={onDonorLoginClick}
+                className="text-xs font-bold text-[#1E3F20] hover:text-[#E06D27] bg-[#EAF5EC] px-3.5 py-2 rounded-full border border-[#1E3F20]/20 flex items-center space-x-1 cursor-pointer transition-colors"
+              >
+                <User className="w-3.5 h-3.5 text-[#1E3F20]" />
+                <span>Login</span>
+              </button>
+            )}
+
             <button
               onClick={() => handleNavClick('donate')}
               className="relative group overflow-hidden rounded-full bg-gradient-to-r from-[#E06D27] to-[#D95B16] px-5 py-2.5 text-sm font-bold text-white shadow-md hover:shadow-lg hover:from-[#d55f19] hover:to-[#c34e0f] transition-all duration-300 active:scale-95 cursor-pointer"
@@ -125,13 +185,23 @@ const Header = ({ activePage, setActivePage }) => {
 
           {/* Mobile Action Controls */}
           <div className="flex items-center space-x-2 sm:space-x-3 lg:hidden">
-            <button
-              onClick={() => handleNavClick('donate')}
-              className="bg-[#E06D27] text-white text-xs font-bold px-3 py-1.5 sm:py-2 rounded-full flex items-center space-x-1 shadow-xs active:scale-95"
-            >
-              <span>🙏</span>
-              <span>Donate</span>
-            </button>
+            {!donorUser ? (
+              <button
+                onClick={onDonorLoginClick}
+                className="bg-[#EAF5EC] text-[#1E3F20] text-xs font-bold px-3 py-1.5 rounded-full border border-[#1E3F20]/20 flex items-center space-x-1"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>Login</span>
+              </button>
+            ) : (
+              <button
+                onClick={onDonorDashboardClick}
+                className="bg-[#E06D27] text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center space-x-1"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>Dashboard</span>
+              </button>
+            )}
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -157,11 +227,10 @@ const Header = ({ activePage, setActivePage }) => {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
-                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left font-semibold transition-all ${
-                      isActive
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left font-semibold transition-all ${isActive
                         ? 'bg-[#1E3F20] text-white shadow-sm'
                         : 'text-[#1C1917] hover:bg-[#FAF6F0]'
-                    }`}
+                      }`}
                   >
                     <span className="text-sm sm:text-base">{item.label}</span>
                     <ChevronRight className={`w-4 h-4 ${isActive ? 'text-white' : 'text-gray-400'}`} />
@@ -169,7 +238,25 @@ const Header = ({ activePage, setActivePage }) => {
                 );
               })}
 
-              <div className="pt-4 border-t border-gray-200 mt-2">
+              <div className="pt-4 border-t border-gray-200 mt-2 space-y-2">
+                {!donorUser ? (
+                  <button
+                    onClick={() => { setMobileMenuOpen(false); onDonorLoginClick(); }}
+                    className="w-full bg-[#EAF5EC] text-[#1E3F20] font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 border border-[#1E3F20]/20"
+                  >
+                    <User className="w-4 h-4 text-[#1E3F20]" />
+                    <span>Donor Mobile Login</span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => { setMobileMenuOpen(false); onDonorDashboardClick(); }}
+                    className="w-full bg-[#E06D27] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-sm"
+                  >
+                    <User className="w-4 h-4 text-white" />
+                    <span>My Donor Dashboard</span>
+                  </button>
+                )}
+
                 <button
                   onClick={() => handleNavClick('donate')}
                   className="w-full bg-gradient-to-r from-[#E06D27] to-[#D95B16] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-md active:scale-98"
@@ -177,9 +264,6 @@ const Header = ({ activePage, setActivePage }) => {
                   <Heart className="w-5 h-5 fill-current text-white/90" />
                   <span>🙏 Donate Now</span>
                 </button>
-                <div className="mt-3 text-center text-xs text-gray-500 font-medium">
-                  Helpline: {SITE_INFO.phone}
-                </div>
               </div>
             </div>
           </div>
