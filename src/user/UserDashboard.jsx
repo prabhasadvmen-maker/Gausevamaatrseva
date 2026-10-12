@@ -7,8 +7,7 @@ import {
 import { API_BASE_URL } from '../config/api';
 
 const UserDashboard = ({ donorUser, donorToken, onLogout, onNavigateToDonate, showToast }) => {
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'history' | 'profile'
-  
+  const [activeTab, setActiveTab] = useState('overview'); 
   // Profile State from API-11 & API-12
   const [profile, setProfile] = useState({
     id: donorUser?.id || '',
