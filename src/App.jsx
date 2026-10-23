@@ -10,6 +10,7 @@ import OurSeva from './pages/OurSeva';
 import Gallery from './pages/Gallery';
 import Donate from './pages/Donate';
 import Contact from './pages/Contact';
+import DeleteAccount from './pages/DeleteAccount';
 
 import AdminLogin from './admin/AdminLogin';
 import AdminDashboard from './admin/AdminDashboard';
@@ -60,6 +61,11 @@ function App() {
 
       const hasAdminToken = !!localStorage.getItem('adminToken');
       const hasDonorToken = !!localStorage.getItem('donorToken');
+
+      if (path === '/delete-account' || path === '/delete-account/') {
+        setActivePage('delete-account');
+        return;
+      }
 
       // Exact Industrial Admin Portal Routes: /admin/login & /admin/dashboard
       if (path === '/admin/login' || path.includes('/admin/login') || hash.includes('#admin-login')) {
@@ -296,6 +302,8 @@ function App() {
             showToast={showToast}
           />
         )}
+
+        {activePage === 'delete-account' && <DeleteAccount />}
 
         {activePage === 'user-dashboard' && (
           <UserDashboard
