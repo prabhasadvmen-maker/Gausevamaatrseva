@@ -74,7 +74,7 @@ const UsersTab = () => {
         </div>
       </div>
 
-      {/* User Grid Cards */}
+      {/* Users Table */}
       {filteredUsers.length === 0 ? (
         <div className="bg-white rounded-2xl p-12 text-center border border-gray-200/80 space-y-3">
           <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mx-auto text-gray-400">
@@ -86,62 +86,77 @@ const UsersTab = () => {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredUsers.map((user) => (
-            <div key={user.id} className="bg-white p-6 rounded-2xl shadow-xs border border-gray-200/80 space-y-4 hover:shadow-md transition-shadow">
-              
-              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-full bg-[#1E3F20] text-[#D4AF37] font-bold flex items-center justify-center text-sm shadow-xs border border-[#D4AF37]/30">
-                    {(user.name || 'U').split(' ').map(n => n[0]).join('') || 'U'}
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-[#1E3F20] leading-tight">{user.name || 'Gousevak User'}</h3>
-                    <span className="text-[10px] font-semibold text-gray-400 font-mono">{user.id}</span>
-                  </div>
-                </div>
-
-                <span className="inline-flex items-center space-x-1 bg-[#EAF5EC] text-[#2E7D32] text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-[#2E7D32]/20">
-                  <ShieldCheck className="w-3 h-3" />
-                  <span>Verified OTP</span>
-                </span>
-              </div>
-
-              <div className="space-y-2 text-xs text-gray-600">
-                <div className="flex items-center space-x-2">
-                  <Phone className="w-3.5 h-3.5 text-[#E06D27]" />
-                  <span className="font-semibold text-gray-800">{user.country_code || '+91'} {user.phone}</span>
-                </div>
-                
-                {user.email && (
-                  <div className="flex items-center space-x-2">
-                    <Mail className="w-3.5 h-3.5 text-gray-400" />
-                    <span className="truncate">{user.email}</span>
-                  </div>
-                )}
-
-                {user.address && user.address.city && (
-                  <div className="flex items-center space-x-2">
-                    <MapPin className="w-3.5 h-3.5 text-gray-400" />
-                    <span>{user.address.city}, {user.address.state}</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
-                <div>
-                  <span className="text-gray-400 block text-[10px] uppercase font-bold">Total Donated</span>
-                  <span className="font-extrabold text-[#1E3F20] text-sm">₹{(user.total_donations_amount || 0).toLocaleString('en-IN')}</span>
-                </div>
-
-                <div className="text-right">
-                  <span className="text-gray-400 block text-[10px] uppercase font-bold">Donation Count</span>
-                  <span className="font-bold text-gray-800">{user.total_donations_count || 0} Sevas</span>
-                </div>
-              </div>
-
-            </div>
-          ))}
+        <div className="bg-white rounded-2xl shadow-xs border border-gray-200/80 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-gray-50 border-b border-gray-200">
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">User</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Phone</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Email</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Location</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Total Donated</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Donations</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {filteredUsers.map((user) => (
+                  <tr key={user.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 rounded-full bg-[#1E3F20] text-[#D4AF37] font-bold flex items-center justify-center text-sm shadow-xs border border-[#D4AF37]/30">
+                          {(user.name || 'U').split(' ').map(n => n[0]).join('') || 'U'}
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-[#1E3F20]">{user.name || 'Gousevak User'}</p>
+                          <p className="text-[10px] font-mono text-gray-400">{user.id}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center space-x-2 text-sm text-gray-700">
+                        <Phone className="w-3.5 h-3.5 text-[#E06D27]" />
+                        <span className="font-semibold">{user.country_code || '+91'} {user.phone}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                        <Mail className="w-3.5 h-3.5 text-gray-400" />
+                        <span className="truncate">{user.email || '-'}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                        <MapPin className="w-3.5 h-3.5 text-gray-400" />
+                        <span>
+                          {user.address?.city && user.address?.state 
+                            ? `${user.address.city}, ${user.address.state}` 
+                            : '-'}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="text-sm font-extrabold text-[#1E3F20]">
+                        ₹{(user.total_donations_amount || 0).toLocaleString('en-IN')}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="text-sm font-bold text-gray-800">
+                        {user.total_donations_count || 0} Sevas
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="inline-flex items-center space-x-1 bg-[#EAF5EC] text-[#2E7D32] text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-[#2E7D32]/20">
+                        <ShieldCheck className="w-3 h-3" />
+                        <span>Verified OTP</span>
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 

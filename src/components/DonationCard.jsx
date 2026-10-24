@@ -40,21 +40,62 @@ const DonationCard = ({ showToast }) => {
 
     setLoading(true);
     try {
+      // Step 1: Create order on backend
+      const orderResponse = await fetch(`${API_BASE_URL}/api/v1/payments/create-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: finalAmount,
+          currency: 'INR',
+          receipt: `receipt_${Date.now()}`,
+          description: `Donation for Cow Welfare - ₹${finalAmount}`
+        })
+      });
+
+      const orderData = await orderResponse.json();
+      if (!orderData.success || !orderData.order?.id) {
+        showToast('Failed to create payment order');
+        setLoading(false);
+        return;
+      }
+
+      // Step 2: Load Razorpay script
       const script = document.createElement('script');
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
       script.async = true;
       script.onload = () => {
         const options = {
           key: razorpayConfig.key_id,
+          order_id: orderData.order.id,
           amount: finalAmount * 100,
           currency: 'INR',
           name: razorpayConfig.merchant_name,
           description: `Donation for Cow Welfare - ₹${finalAmount}`,
           image: razorpayConfig.merchant_logo,
-          handler: function (response) {
-            showToast('Payment successful! Thank you for your donation.');
-            console.log('Payment Response:', response);
-            setCustomAmount('');
+          handler: async function (response) {
+            // Step 3: Verify payment signature
+            try {
+              const verifyResponse = await fetch(`${API_BASE_URL}/api/v1/payments/verify-payment`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature
+                })
+              });
+
+              const verifyData = await verifyResponse.json();
+              if (verifyData.success) {
+                showToast('Payment successful! Thank you for your donation.');
+                setCustomAmount('');
+              } else {
+                showToast('Payment verification failed');
+              }
+            } catch (error) {
+              console.error('Verification error:', error);
+              showToast('Payment verification error');
+            }
           },
           prefill: {
             name: 'Donor',
